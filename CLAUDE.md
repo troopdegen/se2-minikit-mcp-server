@@ -177,9 +177,9 @@ se2-minikit-mcp-server/
 ## Useful References
 
 ### Documentation
-- **WORKFLOW.md**: Complete list of 44 issues with tasks, acceptance criteria, dependencies
-- **DEPENDENCIES.md**: Critical path, parallel work opportunities, visual dependency graphs
-- **CONTRIBUTING.md**: Code standards, PR workflow, testing requirements
+- **docs/project-management/WORKFLOW.md**: Complete list of 44 issues with tasks, acceptance criteria, dependencies
+- **docs/project-management/DEPENDENCIES.md**: Critical path, parallel work opportunities, visual dependency graphs
+- **docs/development/CONTRIBUTING.md**: Code standards, PR workflow, testing requirements
 - **docs/architecture.md**: Complete system design with diagrams
 - **docs/tool-schemas.md**: Specifications for all 8 planned MCP tools
 
@@ -267,7 +267,7 @@ rm -rf dist && bun run build  # Clean build
 - Config schema validation (#9)
 - Logging infrastructure (#10)
 
-**See WORKFLOW.md for complete task breakdown and DEPENDENCIES.md for parallel work opportunities.**
+**See docs/project-management/WORKFLOW.md for complete task breakdown and docs/project-management/DEPENDENCIES.md for parallel work opportunities.**
 
 ## Success Metrics
 

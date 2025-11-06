@@ -8,11 +8,21 @@
 
 ## 🎯 Quick Links
 
-- **[Get Started](./docs/README.md)** - Documentation index and project overview
-- **[Implementation Workflow](./WORKFLOW.md)** - 44 issues across 6 epics
-- **[Contributing Guide](./CONTRIBUTING.md)** - How to contribute
-- **[Project Board Setup](./PROJECT_BOARD.md)** - GitHub Projects configuration
-- **[Dependencies Map](./DEPENDENCIES.md)** - Visual dependency analysis
+### 📖 Documentation
+- **[Documentation Index](./docs/README.md)** - Complete documentation overview
+- **[Architecture](./docs/architecture.md)** - System design and patterns
+- **[Usage Guide](./docs/guides/usage-guide.md)** - How to use the MCP server
+
+### 🛠️ Development
+- **[Contributing Guide](./docs/development/CONTRIBUTING.md)** - How to contribute
+- **[Development Setup](./docs/development/DEV_SETUP.md)** - Local environment setup
+- **[Claude Code Guide](./CLAUDE.md)** - For Claude Code instances
+
+### 📋 Project Management
+- **[Implementation Workflow](./docs/project-management/WORKFLOW.md)** - 44 issues across 6 epics
+- **[Dependencies Map](./docs/project-management/DEPENDENCIES.md)** - Visual dependency analysis
+- **[Project Board Setup](./docs/project-management/PROJECT_BOARD.md)** - GitHub Projects configuration
+- **[Session Summary](./docs/project-management/SESSION_SUMMARY.md)** - Progress tracking
 
 ## 📚 Project Overview
 
@@ -44,12 +54,12 @@ An MCP server that enables developers to rapidly scaffold, configure, and deploy
 | [Tool Schemas](./docs/tool-schemas.md) | MCP tool specifications | ~10,000 |
 | [Resources & Templates](./docs/resources-templates.md) | Template catalog | ~8,000 |
 | [Deployment Pipeline](./docs/deployment-pipeline.md) | Deployment process | ~6,000 |
-| [Usage Guide](./docs/usage-guide.md) | User workflows | ~9,000 |
-| [Implementation Roadmap](./docs/implementation-roadmap.md) | Development plan | ~8,000 |
-| [WORKFLOW.md](./WORKFLOW.md) | Epic/issue breakdown | ~27,000 |
-| [DEPENDENCIES.md](./DEPENDENCIES.md) | Dependency mapping | ~8,000 |
-| [CONTRIBUTING.md](./CONTRIBUTING.md) | Contribution guide | ~10,000 |
-| [PROJECT_BOARD.md](./PROJECT_BOARD.md) | Board setup | ~9,000 |
+| [Usage Guide](./docs/guides/usage-guide.md) | User workflows | ~9,000 |
+| [Implementation Roadmap](./docs/guides/implementation-roadmap.md) | Development plan | ~8,000 |
+| [WORKFLOW.md](./docs/project-management/WORKFLOW.md) | Epic/issue breakdown | ~27,000 |
+| [DEPENDENCIES.md](./docs/project-management/DEPENDENCIES.md) | Dependency mapping | ~8,000 |
+| [CONTRIBUTING.md](./docs/development/CONTRIBUTING.md) | Contribution guide | ~10,000 |
+| [PROJECT_BOARD.md](./docs/project-management/PROJECT_BOARD.md) | Board setup | ~9,000 |
 
 ### Phase 2: Implementation 🚧 Ready to Start
 
@@ -118,8 +128,8 @@ We welcome contributions! Here's how to get started:
 ### For New Contributors
 
 1. **Read the Docs**:
-   - [CONTRIBUTING.md](./CONTRIBUTING.md) - Complete contribution guide
-   - [WORKFLOW.md](./WORKFLOW.md) - Understanding the implementation plan
+   - [CONTRIBUTING.md](./docs/development/CONTRIBUTING.md) - Complete contribution guide
+   - [WORKFLOW.md](./docs/project-management/WORKFLOW.md) - Understanding the implementation plan
 
 2. **Setup Development Environment**:
    ```bash
@@ -128,25 +138,25 @@ We welcome contributions! Here's how to get started:
    cd se2-minikit-mcp-server
 
    # Install dependencies
-   npm install
+   bun install
 
    # Run tests
-   npm test
+   bun test
    ```
 
 3. **Find an Issue**:
    - Browse [GitHub Issues](https://github.com/org/repo/issues)
    - Look for `good-first-issue` labels
-   - Check [WORKFLOW.md](./WORKFLOW.md) for context
+   - Check [WORKFLOW.md](./docs/project-management/WORKFLOW.md) for context
 
 4. **Submit a PR**:
-   - Follow [PR process](./CONTRIBUTING.md#pull-request-process)
+   - Follow [PR process](./docs/development/CONTRIBUTING.md#pull-request-process)
    - Include tests and documentation
    - Reference the issue: `Closes #N`
 
 ### For Core Team
 
-See [PROJECT_BOARD.md](./PROJECT_BOARD.md) for:
+See [PROJECT_BOARD.md](./docs/project-management/PROJECT_BOARD.md) for:
 - GitHub Projects setup instructions
 - Automation rules configuration
 - Team workflow and coordination
@@ -169,7 +179,7 @@ See [PROJECT_BOARD.md](./PROJECT_BOARD.md) for:
 - **Week 5-6**: 2 parallel streams (Minikit + Farcaster)
 - **Week 7-8**: 3 parallel streams (deployment components)
 
-See [DEPENDENCIES.md](./DEPENDENCIES.md) for complete dependency analysis.
+See [DEPENDENCIES.md](./docs/project-management/DEPENDENCIES.md) for complete dependency analysis.
 
 ## 📊 Success Metrics
 
@@ -241,4 +251,4 @@ Built with:
 
 ---
 
-**Ready to build?** Start with the [WORKFLOW.md](./WORKFLOW.md) to understand the implementation plan, then check [CONTRIBUTING.md](./CONTRIBUTING.md) to get started! 🚀
+**Ready to build?** Start with the [WORKFLOW.md](./docs/project-management/WORKFLOW.md) to understand the implementation plan, then check [CONTRIBUTING.md](./docs/development/CONTRIBUTING.md) to get started! 🚀

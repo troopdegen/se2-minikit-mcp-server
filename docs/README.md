@@ -35,7 +35,7 @@ Complete documentation for the scaffold-minikit MCP server - enabling rapid Web3
    - Minikit setup
    - Post-deployment checks
 
-5. **[Usage Guide](./usage-guide.md)**
+5. **[Usage Guide](./guides/usage-guide.md)**
    - Quick start guide
    - Complete workflows
    - Natural language patterns
@@ -43,13 +43,50 @@ Complete documentation for the scaffold-minikit MCP server - enabling rapid Web3
    - Best practices
    - Integration examples
 
-6. **[Implementation Roadmap](./implementation-roadmap.md)**
+6. **[Implementation Roadmap](./guides/implementation-roadmap.md)**
    - 10-12 week development plan
    - Phase-by-phase breakdown
    - Resource requirements
    - Success metrics
    - Risk management
    - Post-launch roadmap
+
+### Development & Project Management
+
+7. **[Contributing Guide](./development/CONTRIBUTING.md)**
+   - Code standards and conventions
+   - Development workflow
+   - Pull request process
+   - Testing requirements
+
+8. **[Development Setup](./development/DEV_SETUP.md)**
+   - Local environment setup
+   - Running the MCP server
+   - Available scripts
+   - Troubleshooting
+
+9. **[Workflow & Issues](./project-management/WORKFLOW.md)**
+   - Complete 44-issue breakdown
+   - Epic structure (6 epics)
+   - Task details and acceptance criteria
+   - Story point estimates
+
+10. **[Dependencies Map](./project-management/DEPENDENCIES.md)**
+    - Visual dependency graphs
+    - Critical path analysis
+    - Parallel work opportunities
+    - Risk mitigation
+
+11. **[Project Board Setup](./project-management/PROJECT_BOARD.md)**
+    - GitHub Projects configuration
+    - Automation rules
+    - Team workflows
+    - Progress tracking
+
+12. **[Session Summary](./project-management/SESSION_SUMMARY.md)**
+    - Implementation progress
+    - Completed work
+    - Next steps
 
 ## 🚀 Quick Start
 
@@ -90,13 +127,27 @@ An MCP server that enables developers to rapidly scaffold, configure, and deploy
 
 ```
 docs/
-├── README.md                      # This file
-├── architecture.md                # System architecture
-├── tool-schemas.md               # MCP tool specifications
-├── resources-templates.md        # Templates and examples
-├── deployment-pipeline.md        # Deployment process
-├── usage-guide.md                # User guide
-└── implementation-roadmap.md     # Development roadmap
+├── README.md                          # This file - Documentation index
+│
+├── Core Technical Documentation
+│   ├── architecture.md                # System architecture and design
+│   ├── tool-schemas.md                # MCP tool specifications
+│   ├── resources-templates.md         # Templates and contract examples
+│   └── deployment-pipeline.md         # 6-stage deployment process
+│
+├── guides/                            # User and implementation guides
+│   ├── usage-guide.md                 # Complete user guide
+│   └── implementation-roadmap.md      # Development roadmap
+│
+├── development/                       # Development documentation
+│   ├── CONTRIBUTING.md                # Contribution guidelines
+│   └── DEV_SETUP.md                   # Local development setup
+│
+└── project-management/                # Project management docs
+    ├── WORKFLOW.md                    # 44 implementation issues
+    ├── DEPENDENCIES.md                # Dependency analysis
+    ├── PROJECT_BOARD.md               # GitHub Projects setup
+    └── SESSION_SUMMARY.md             # Progress tracking
 ```
 
 ## 🎯 Use Cases
@@ -206,7 +257,7 @@ Experiment with Web3 development:
 ## 🎓 Learning Path
 
 ### Beginner
-1. Read [Usage Guide](./usage-guide.md)
+1. Read [Usage Guide](./guides/usage-guide.md)
 2. Try basic template
 3. Deploy to testnet
 4. Explore Minikit features
@@ -311,9 +362,10 @@ Community templates welcome! Follow these guidelines:
 ## 📞 Support
 
 ### Documentation
-- [Usage Guide](./usage-guide.md) - Comprehensive user guide
+- [Usage Guide](./guides/usage-guide.md) - Comprehensive user guide
 - [Tool Schemas](./tool-schemas.md) - Complete API reference
-- [Troubleshooting](./usage-guide.md#troubleshooting-guide) - Common issues
+- [Troubleshooting](./guides/usage-guide.md#troubleshooting-guide) - Common issues
+- [Contributing](./development/CONTRIBUTING.md) - How to contribute
 
 ### Community
 - GitHub Issues - Bug reports and feature requests
@@ -335,4 +387,4 @@ Built with:
 
 ---
 
-**Ready to build?** Start with the [Usage Guide](./usage-guide.md) 🚀
+**Ready to build?** Start with the [Usage Guide](./guides/usage-guide.md) for users or [Contributing Guide](./development/CONTRIBUTING.md) for contributors! 🚀
