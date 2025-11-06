@@ -1,0 +1,125 @@
+name: Bug Report
+description: Report a bug or unexpected behavior
+title: "[Bug]: "
+labels: ["bug"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a bug! Please provide as much detail as possible.
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      description: How severe is this bug?
+      options:
+        - Critical (system broken, security issue)
+        - High (major feature broken)
+        - Medium (feature partially broken)
+        - Low (minor issue, cosmetic)
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: affected-areas
+    attributes:
+      label: Affected Areas
+      description: Which areas are impacted?
+      options:
+        - label: Scaffolding
+        - label: Contract Configuration
+        - label: Deployment
+        - label: Minikit Integration
+        - label: Validation
+        - label: Templates
+        - label: Documentation
+        - label: Other
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Bug Description
+      description: A clear and concise description of the bug
+      placeholder: What went wrong?
+    validations:
+      required: true
+
+  - type: textarea
+    id: current-behavior
+    attributes:
+      label: Current Behavior
+      description: What actually happens
+      placeholder: Describe what you observe
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected Behavior
+      description: What should happen instead
+      placeholder: Describe what you expected
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to Reproduce
+      description: Detailed steps to reproduce the bug
+      placeholder: |
+        1. Run command '...'
+        2. Configure with '...'
+        3. Observe error '...'
+    validations:
+      required: true
+
+  - type: textarea
+    id: error-output
+    attributes:
+      label: Error Messages/Logs
+      description: Copy/paste any error messages or relevant logs
+      render: shell
+      placeholder: |
+        Error: ValidationError: Invalid configuration
+        at validateConfig (src/config/validator.ts:42)
+        ...
+    validations:
+      required: false
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Your development environment
+      value: |
+        - Node.js version:
+        - npm version:
+        - OS:
+        - Package version:
+      render: markdown
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Any other relevant information
+      placeholder: Screenshots, related issues, attempted solutions, etc.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Pre-submission Checklist
+      options:
+        - label: I have searched existing issues to avoid duplicates
+          required: true
+        - label: I have provided enough information to reproduce the bug
+          required: true
+        - label: I have included error messages/logs if applicable
+          required: false

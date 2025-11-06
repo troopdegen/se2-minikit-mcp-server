@@ -1,0 +1,51 @@
+{
+  "name": "se2-minikit-mcp-server",
+  "version": "0.0.1",
+  "description": "MCP server enabling rapid Web3 development on Base with Farcaster integration",
+  "module": "src/server/index.ts",
+  "type": "module",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "dev": "bun run src/server/index.ts",
+    "build": "bun build src/server/index.ts --outdir dist --target node --format esm",
+    "start": "bun run dist/index.js",
+    "test": "bun test",
+    "test:watch": "bun test --watch",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "format:check": "prettier --check \"src/**/*.ts\"",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "scaffold-eth",
+    "base",
+    "farcaster",
+    "minikit",
+    "web3",
+    "blockchain"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "bun": ">=1.0.0"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/node": "^24.10.0",
+    "@typescript-eslint/eslint-plugin": "^8.46.3",
+    "@typescript-eslint/parser": "^8.46.3",
+    "eslint": "^9.39.1",
+    "prettier": "^3.6.2"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.21.0"
+  }
+}

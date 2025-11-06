@@ -1,0 +1,139 @@
+name: Feature Implementation
+description: Implementation task for planned features from WORKFLOW.md
+title: "[Feature]: "
+labels: ["feature"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template for feature implementation tasks from the roadmap.
+        Reference the epic and issue number from WORKFLOW.md.
+
+  - type: input
+    id: epic
+    attributes:
+      label: Epic
+      description: Which epic does this belong to?
+      placeholder: "Epic 1: Core Infrastructure"
+    validations:
+      required: true
+
+  - type: input
+    id: workflow-issue
+    attributes:
+      label: Workflow Issue Number
+      description: Issue number from WORKFLOW.md
+      placeholder: "#11"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      options:
+        - p0-critical
+        - p1-high
+        - p2-medium
+        - p3-low
+    validations:
+      required: true
+
+  - type: dropdown
+    id: complexity
+    attributes:
+      label: Complexity
+      options:
+        - Low (1-3 points)
+        - Medium (5-8 points)
+        - High (13+ points)
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: domains
+    attributes:
+      label: Domains
+      description: Which areas does this touch?
+      options:
+        - label: Backend
+        - label: Frontend
+        - label: Contracts
+        - label: Templates
+        - label: Documentation
+        - label: Testing
+        - label: Infrastructure
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Detailed description of the feature to implement
+      placeholder: What needs to be built and why?
+    validations:
+      required: true
+
+  - type: textarea
+    id: tasks
+    attributes:
+      label: Implementation Tasks
+      description: Checklist of specific tasks to complete
+      placeholder: |
+        - [ ] Task 1
+        - [ ] Task 2
+        - [ ] Task 3
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: Acceptance Criteria
+      description: What must be true for this to be considered complete?
+      placeholder: |
+        - [ ] Criterion 1
+        - [ ] Criterion 2
+    validations:
+      required: true
+
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies
+      description: Which other issues must be completed first?
+      placeholder: "Depends on #11, #12"
+    validations:
+      required: false
+
+  - type: textarea
+    id: files-created
+    attributes:
+      label: Files to Create/Modify
+      description: Expected files that will be created or modified
+      placeholder: |
+        - src/tools/scaffold-project.ts
+        - tests/unit/scaffold-project.test.ts
+    validations:
+      required: false
+
+  - type: textarea
+    id: testing-requirements
+    attributes:
+      label: Testing Requirements
+      description: What tests are needed?
+      placeholder: |
+        - [ ] Unit tests
+        - [ ] Integration tests
+        - [ ] E2E tests
+    validations:
+      required: true
+
+  - type: input
+    id: estimated-points
+    attributes:
+      label: Story Points
+      description: Estimated effort (Fibonacci: 1, 2, 3, 5, 8, 13)
+      placeholder: "5"
+    validations:
+      required: false

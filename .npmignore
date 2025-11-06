@@ -1,0 +1,35 @@
+# Source files
+src/
+tests/
+*.test.ts
+*.spec.ts
+
+# Configuration
+.github/
+.vscode/
+.cursor/
+tsconfig.json
+eslint.config.js
+.eslintrc
+.prettierrc
+.prettierignore
+
+# Documentation (keep only essential)
+docs/dev-tickets/
+WORKFLOW.md
+DEPENDENCIES.md
+PROJECT_BOARD.md
+SESSION_SUMMARY.md
+
+# Development files
+.env.example
+.env
+*.log
+coverage/
+.cache/
+
+# IDE
+.idea/
+*.swp
+*.swo
+.DS_Store
