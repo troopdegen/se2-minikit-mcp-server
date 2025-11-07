@@ -34,17 +34,34 @@
 
 4. **Configure Claude Desktop**:
 
-   Add to your Claude Desktop config (`~/Library/Application Support/Claude/claude_desktop_config.json` on macOS):
+   First, find your Bun path:
+   ```bash
+   which bun
+   # Output example: /Users/yourusername/.bun/bin/bun
+   ```
+
+   Then add to your Claude Desktop config (`~/Library/Application Support/Claude/claude_desktop_config.json` on macOS):
    ```json
    {
      "mcpServers": {
        "scaffold-minikit": {
-         "command": "bun",
-         "args": ["run", "/absolute/path/to/se2-minikit-mcp-server/src/server/index.ts"]
+         "command": "/Users/yourusername/.bun/bin/bun",
+         "args": ["--silent", "/absolute/path/to/se2-minikit-mcp-server/dist/index.js"],
+         "env": {
+           "NODE_ENV": "production",
+           "LOG_LEVEL": "info"
+         }
        }
      }
    }
    ```
+
+   **Important**:
+   - Use absolute paths for both `command` and the server path
+   - `--silent` flag suppresses Bun's package manager output
+   - `NODE_ENV=production` disables pretty logging (prevents stdout leaks)
+   - Use the built `dist/index.js` file (not `src/server/index.ts`)
+   - Claude Desktop doesn't inherit your shell's PATH
 
 5. **Restart Claude Desktop** and verify the server appears in the MCP servers list.
 

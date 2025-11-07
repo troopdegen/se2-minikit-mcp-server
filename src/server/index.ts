@@ -6,7 +6,8 @@
  * MCP server enabling rapid Web3 development on Base with Farcaster integration
  */
 
-import { join } from 'path';
+import { join, dirname } from 'path';
+import { fileURLToPath } from 'url';
 import { Server } from '@modelcontextprotocol/sdk/server/index.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import {
@@ -24,6 +25,13 @@ import { TemplateEngine } from '../engines/index.js';
 import { createScaffoldProjectHandler } from '../tools/scaffold-project.js';
 import { MCPError, ErrorCodes } from '../types/server.js';
 import type { Logger, ToolResult } from '../types/server.js';
+
+// Get directory containing this file (works in both dev and built code)
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+// From src/server/index.ts: go up 2 levels to project root
+// From dist/index.js: go up 1 level to project root
+const PROJECT_ROOT = __dirname.includes('/dist') ? join(__dirname, '..') : join(__dirname, '..', '..');
 
 /**
  * Main MCP server class
@@ -51,9 +59,10 @@ class SE2MinikitMCPServer {
     this.toolRegistry = createToolRegistry(this.logger);
     this.resourceRegistry = createResourceRegistry(this.logger);
 
-    // Initialize template engine
+    // Initialize template engine with path relative to project root
+    // This works correctly whether running from src/ or dist/
     this.templateEngine = new TemplateEngine(this.logger, {
-      templatesDir: join(process.cwd(), 'templates'),
+      templatesDir: join(PROJECT_ROOT, 'templates'),
     });
 
     // Create MCP server instance

@@ -10,7 +10,7 @@ import type { ServerConfig } from '../types/server.js';
  * Load environment variables from .env file
  */
 export function loadEnvFile(): void {
-  loadDotenv();
+  loadDotenv({ quiet: true });
 }
 
 /**
