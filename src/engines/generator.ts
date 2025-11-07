@@ -244,7 +244,9 @@ export class TemplateGenerator {
 
     for (const entry of entries) {
       const entrySourcePath = join(sourcePath, entry);
-      const entryTargetPath = join(targetPath, entry);
+      // Render entry name with variables (for files like {{contractName}}.sol)
+      const renderedEntry = this.renderer.renderPath(entry, context);
+      const entryTargetPath = join(targetPath, renderedEntry);
 
       const isDir = await this.isDirectory(entrySourcePath);
 
@@ -367,12 +369,14 @@ export class TemplateGenerator {
   }
 
   /**
-   * Helper: Check if path exists
+   * Helper: Check if path exists (file or directory)
    */
   private async pathExists(path: string): Promise<boolean> {
     try {
       const file = Bun.file(path);
-      return await file.exists();
+      // Try stat first - works for both files and directories
+      await file.stat();
+      return true;
     } catch {
       return false;
     }
@@ -422,17 +426,18 @@ export class TemplateGenerator {
   }
 
   /**
-   * Helper: Read directory entries
+   * Helper: Read directory entries (including dotfiles)
    */
   private async readDirectory(path: string): Promise<string[]> {
-    const glob = new Bun.Glob('*');
-    const entries: string[] = [];
-
-    for await (const file of glob.scan({ cwd: path, onlyFiles: false })) {
-      entries.push(file);
+    try {
+      const { readdirSync } = await import('fs');
+      const entries = readdirSync(path).filter(e => e !== '.' && e !== '..');
+      return entries;
+    } catch (error) {
+      const message = error instanceof Error ? error.message : 'Unknown error';
+      this.logger.warn('Failed to read directory', { path, error: message });
+      return [];
     }
-
-    return entries;
   }
 
   /**

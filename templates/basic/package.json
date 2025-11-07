@@ -1,0 +1,28 @@
+{
+  "name": "{{projectName}}",
+  "version": "0.1.0",
+  "private": true,
+  "description": "{{description}}",
+  "author": "{{author}}",
+  "scripts": {
+    "account": "bun hardhat run scripts/listAccount.ts",
+    "chain": "bun hardhat node --network hardhat --no-deploy",
+    "compile": "bun hardhat compile",
+    "deploy": "bun hardhat deploy --network {{network}}",
+    "deploy:verify": "bun hardhat deploy --network {{network}} --verify",
+    "flatten": "bun hardhat flatten",
+    "fork": "MAINNET_FORKING_ENABLED=true bun hardhat node --network hardhat --no-deploy",
+    "generate": "bun hardhat run scripts/generateAccount.ts",
+    "test": "bun hardhat test --network hardhat",
+    "verify": "bun hardhat --network {{network}} etherscan-verify --solc-input"
+  },
+  "dependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "hardhat": "^2.22.0",
+    "hardhat-deploy": "^0.12.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  }
+}

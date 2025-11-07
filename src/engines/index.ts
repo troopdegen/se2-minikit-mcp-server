@@ -9,6 +9,7 @@ import type {
   TemplateGenerationOptions,
   TemplateGenerationResult,
   TemplateRegistryEntry,
+  TemplateConfig,
   HookType,
 } from '../types/template.js';
 import type { Logger } from '../types/server.js';
@@ -73,10 +74,26 @@ export class TemplateEngine {
       // Load template to get hooks configuration
       const loaded = await this.loader.load(options.template);
 
+      // Apply defaults to variables (before validation)
+      const mergedVariables = this.applyDefaults(loaded.config, options.variables);
+
+      // Validate variables against template schema
+      const validationErrors = this.validateVariables(loaded.config, mergedVariables);
+      if (validationErrors.length > 0) {
+        throw new MCPError(
+          `Variable validation failed: ${validationErrors.join(', ')}`,
+          ErrorCodes.INVALID_PARAMS,
+          { template: options.template, errors: validationErrors }
+        );
+      }
+
+      // Update options with merged variables
+      const updatedOptions = { ...options, variables: mergedVariables };
+
       // Prepare hook execution context
       const hookContext: HookExecutionContext = {
         cwd: options.destination,
-        variables: options.variables,
+        variables: mergedVariables,
       };
 
       let hookResults = [];
@@ -93,7 +110,7 @@ export class TemplateEngine {
       }
 
       // Generate files
-      const result = await this.generator.generate(options);
+      const result = await this.generator.generate(updatedOptions);
 
       // Run post-generate hooks
       if (options.runHooks && loaded.config.hooks && result.success) {
@@ -160,6 +177,74 @@ export class TemplateEngine {
    */
   async preview(options: Omit<TemplateGenerationOptions, 'dryRun'>) {
     return await this.generate({ ...options, dryRun: true });
+  }
+
+  /**
+   * Apply default values to variables
+   */
+  private applyDefaults(
+    config: TemplateConfig,
+    variables: Record<string, unknown>
+  ): Record<string, unknown> {
+    const merged = { ...variables };
+
+    for (const varDef of config.variables) {
+      // Apply default if variable not provided and default exists
+      if ((merged[varDef.name] === undefined || merged[varDef.name] === null) && varDef.default !== undefined) {
+        merged[varDef.name] = varDef.default;
+      }
+    }
+
+    return merged;
+  }
+
+  /**
+   * Validate variables against template schema
+   */
+  private validateVariables(
+    config: TemplateConfig,
+    variables: Record<string, unknown>
+  ): string[] {
+    const errors: string[] = [];
+
+    for (const varDef of config.variables) {
+      const value = variables[varDef.name];
+
+      // Check required variables
+      if (varDef.required && (value === undefined || value === null || value === '')) {
+        errors.push(`Variable '${varDef.name}' is required`);
+        continue;
+      }
+
+      // Skip validation if variable not provided and not required
+      if (value === undefined || value === null) {
+        continue;
+      }
+
+      // Type validation
+      const actualType = typeof value;
+      if (varDef.type && actualType !== varDef.type) {
+        errors.push(`Variable '${varDef.name}' must be of type ${varDef.type}, got ${actualType}`);
+        continue;
+      }
+
+      // Pattern validation (for strings)
+      if (varDef.pattern && typeof value === 'string') {
+        const regex = new RegExp(varDef.pattern);
+        if (!regex.test(value)) {
+          errors.push(`Variable '${varDef.name}' does not match pattern ${varDef.pattern}`);
+        }
+      }
+
+      // Enum validation
+      if (varDef.enum && Array.isArray(varDef.enum)) {
+        if (!varDef.enum.includes(value as string)) {
+          errors.push(`Variable '${varDef.name}' must be one of: ${varDef.enum.join(', ')}`);
+        }
+      }
+    }
+
+    return errors;
   }
 
   /**
