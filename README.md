@@ -406,6 +406,7 @@ Built with:
 ## 📞 Support & Community
 
 - **Issues**: [GitHub Issues](https://github.com/yourusername/se2-minikit-mcp-server/issues)
+- **Troubleshooting**: [Common Issues & Solutions](./TROUBLESHOOTING.md)
 - **Documentation**: [Complete Docs](./docs/README.md)
 - **Status**: [Current Implementation Status](./CURRENT_STATUS.md)
 - **Contributing**: [Contribution Guide](./docs/development/CONTRIBUTING.md)
