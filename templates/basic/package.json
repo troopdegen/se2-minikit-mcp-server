@@ -28,6 +28,7 @@
     "@typechain/ethers-v6": "^0.5.0",
     "@typechain/hardhat": "^9.0.0",
     "chai": "^4.3.0",
+    "dotenv": "^16.0.0",
     "ethers": "^6.4.0",
     "hardhat": "^2.22.0",
     "hardhat-deploy": "^0.12.0",
