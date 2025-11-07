@@ -227,7 +227,7 @@ class SE2MinikitMCPServer {
               type: 'string',
               enum: ['base', 'baseSepolia', 'localhost'],
               description: 'Target network for deployment',
-              default: 'baseSepolia',
+              default: 'localhost',
             },
           },
           required: ['projectName'],

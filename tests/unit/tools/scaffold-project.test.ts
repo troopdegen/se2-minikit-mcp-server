@@ -157,7 +157,7 @@ describe('scaffold_project Tool', () => {
 
       expect(result.success).toBe(true);
       expect(result.data?.template).toBe('basic');
-      expect(result.data?.network).toBe('baseSepolia');
+      expect(result.data?.network).toBe('localhost');
       expect(result.data?.framework).toBe('hardhat');
       expect(result.data?.minikit).toBe(false);
     });

@@ -108,13 +108,13 @@ function mapToTemplateVariables(
     localhost: 'localhost',
   };
 
-  const network = input.targetNetwork || 'baseSepolia';
+  const network = input.targetNetwork || 'localhost';
 
   return {
     projectName: input.projectName,
     author: process.env.USER || 'Anonymous',
     description: `A decentralized application built with Scaffold-ETH 2`,
-    network: networkMap[network] || 'base-sepolia',
+    network: networkMap[network] || 'localhost',
     contractName: 'YourContract',
   };
 }
@@ -245,7 +245,7 @@ export function createScaffoldProjectHandler(
         template: input.template || 'basic',
         minikit: input.includesMinikit || false,
         framework: input.contractFramework || 'hardhat',
-        network: input.targetNetwork || 'baseSepolia',
+        network: input.targetNetwork || 'localhost',
         filesCreated: result.files,
         nextSteps: generateNextSteps(input),
       };
