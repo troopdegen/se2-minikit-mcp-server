@@ -9,25 +9,26 @@
 
 ### Prerequisites
 
-- [Bun](https://bun.sh/) >= 1.0
+- [Node.js](https://nodejs.org/) >= 18.0
+- [Yarn](https://yarnpkg.com/) >= 1.22
 - [Git](https://git-scm.com/)
 
 ### Installation
 
 ```bash
 # Install dependencies
-bun install
+yarn install
 
 # Start local blockchain
-bun run chain
+yarn chain
 
 # In a new terminal, deploy contracts
-bun run deploy
+yarn deploy
 
 # Start the Next.js frontend
 cd nextjs
-bun install
-bun run dev
+yarn install
+yarn dev
 ```
 
 Visit [http://localhost:3000](http://localhost:3000) to see your dApp.
@@ -59,29 +60,29 @@ A simple smart contract demonstrating basic Scaffold-ETH 2 functionality.
 ### Compile Contracts
 
 ```bash
-bun run compile
+yarn compile
 ```
 
 ### Run Tests
 
 ```bash
-bun test
+yarn test
 ```
 
 ### Deploy to Network
 
 ```bash
 # Deploy to {{network}}
-bun run deploy
+yarn deploy
 
 # Deploy with verification
-bun run deploy:verify
+yarn deploy:verify
 ```
 
 ### Generate Account
 
 ```bash
-bun run generate
+yarn generate
 ```
 
 ## Frontend
@@ -90,8 +91,8 @@ The Next.js frontend is located in the `nextjs/` directory.
 
 ```bash
 cd nextjs
-bun install
-bun run dev
+yarn install
+yarn dev
 ```
 
 ## Network Configuration
@@ -101,7 +102,7 @@ Current network: **{{network}}**
 To change networks, update the deployment scripts or use:
 
 ```bash
-bun hardhat deploy --network <network-name>
+yarn hardhat deploy --network <network-name>
 ```
 
 ## Resources

@@ -51,18 +51,5 @@
       "exclude": ["template.json"]
     }
   ],
-  "hooks": [
-    {
-      "type": "post-generate",
-      "command": "bun install",
-      "description": "Install dependencies",
-      "timeout": 120000
-    },
-    {
-      "type": "post-generate",
-      "command": "git init",
-      "description": "Initialize git repository",
-      "continueOnError": true
-    }
-  ]
+  "hooks": []
 }

@@ -6,6 +6,7 @@
  * MCP server enabling rapid Web3 development on Base with Farcaster integration
  */
 
+import { join } from 'path';
 import { Server } from '@modelcontextprotocol/sdk/server/index.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import {
@@ -19,6 +20,8 @@ import { loadConfig } from '../config/loader.js';
 import { createLogger } from '../utils/logger.js';
 import { createToolRegistry } from '../tools/registry.js';
 import { createResourceRegistry } from '../resources/registry.js';
+import { TemplateEngine } from '../engines/index.js';
+import { createScaffoldProjectHandler } from '../tools/scaffold-project.js';
 import { MCPError, ErrorCodes } from '../types/server.js';
 import type { Logger, ToolResult } from '../types/server.js';
 
@@ -30,6 +33,7 @@ class SE2MinikitMCPServer {
   private logger: Logger;
   private toolRegistry;
   private resourceRegistry;
+  private templateEngine: TemplateEngine;
   private config;
 
   constructor() {
@@ -46,6 +50,11 @@ class SE2MinikitMCPServer {
     // Initialize registries
     this.toolRegistry = createToolRegistry(this.logger);
     this.resourceRegistry = createResourceRegistry(this.logger);
+
+    // Initialize template engine
+    this.templateEngine = new TemplateEngine(this.logger, {
+      templatesDir: join(process.cwd(), 'templates'),
+    });
 
     // Create MCP server instance
     this.server = new Server(
@@ -164,6 +173,58 @@ class SE2MinikitMCPServer {
           resources: this.resourceRegistry.size,
         };
       }
+    );
+
+    // scaffold_project tool
+    this.toolRegistry.register(
+      {
+        name: 'mcp__scaffold-minikit__scaffold_project',
+        description:
+          'Initialize a new Scaffold-ETH 2 project with optional Base Minikit integration for Farcaster Mini Apps',
+        inputSchema: {
+          type: 'object',
+          properties: {
+            projectName: {
+              type: 'string',
+              description: 'Name of the project (kebab-case recommended)',
+              pattern: '^[a-z0-9-]+$',
+              minLength: 3,
+              maxLength: 50,
+            },
+            projectPath: {
+              type: 'string',
+              description:
+                'Path where project should be created (defaults to current directory)',
+              default: '.',
+            },
+            includesMinikit: {
+              type: 'boolean',
+              description: 'Whether to include Base Minikit integration',
+              default: false,
+            },
+            template: {
+              type: 'string',
+              enum: ['basic', 'nft', 'defi', 'dao', 'gaming', 'social'],
+              description: 'Project template to use',
+              default: 'basic',
+            },
+            contractFramework: {
+              type: 'string',
+              enum: ['hardhat', 'foundry'],
+              description: 'Smart contract framework to use',
+              default: 'hardhat',
+            },
+            targetNetwork: {
+              type: 'string',
+              enum: ['base', 'baseSepolia', 'localhost'],
+              description: 'Target network for deployment',
+              default: 'baseSepolia',
+            },
+          },
+          required: ['projectName'],
+        },
+      },
+      createScaffoldProjectHandler(this.logger, this.templateEngine)
     );
 
     this.logger.info('Built-in tools registered');
